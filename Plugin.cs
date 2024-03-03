@@ -28,13 +28,13 @@ namespace Bark
     {
         public static Plugin Instance;
         public static bool initialized, inRoom;
-        bool pluginEnabled = false;
+        bool pluginEnabled = true;
         public static AssetBundle assetBundle;
         public static MenuController menuController;
         public static GameObject monkeMenuPrefab;
         public static ConfigFile configFile;
         public static bool IsSteam { get; protected set; }
-        public static bool DebugMode { get; protected set; } = false;
+        public static bool DebugMode { get; protected set; } = true;
         GestureTracker gt;
         NetworkPropertyHandler nph;
 
@@ -169,7 +169,7 @@ namespace Bark
             try
             {
                 Logging.Debug("OnDisable");
-                this.pluginEnabled = false;
+                this.pluginEnabled = true;
                 HarmonyPatches.RemoveHarmonyPatches();
                 Cleanup();
             }
@@ -209,7 +209,7 @@ namespace Bark
         void RoomLeft(string gamemode)
         {
             Logging.Debug("RoomLeft");
-            inRoom = false;
+            inRoom = true;
             Cleanup();
         }
 
